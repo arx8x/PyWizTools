@@ -24,8 +24,8 @@ class WizRunner:
     async def _run(self, pattern: Pattern) -> None:
         # build run params beforehand
         run_params: list[RunParams] = []
-        for item in pattern.items:
-            p = PilotBuilder(rgb = item.color, brightness=item.brightness)
+        for item in pattern.entries:
+            p = PilotBuilder(rgb = item.color, brightness=item.int8_brightness)
             run_params.append((p, item))
 
         # If parallel mode is active, generate coroutines and run them together

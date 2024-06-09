@@ -14,8 +14,10 @@ async def main() -> None:
     # create entries for pattern using the generated hues
     entries = [PatternEntry(color=hue, duration=0.1, brightness=100) for hue in hues]
     # create the pattern to be run
-    pattern = Pattern(items=entries, repeat_count=100, delimit_seconds=0.5)
+    pattern = Pattern(entries=entries, repeat_count=5, delimit_seconds=0)
+    # prepare running with the target bulbs
     runner = WizRunner(targets=[light, light2])
+    # run the pattern on both bulbs at the same time
     runner.parallel = True
     await runner.run(pattern=pattern)
     sys.exit(0)

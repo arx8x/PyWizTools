@@ -14,10 +14,14 @@ class PatternEntry:
     brightness: int 
     after: PatternState = PatternState.TURN_OFF
 
+    @property
+    def int8_brightness(self):
+        brightness = min(100, self.brightness)
+        return int((brightness / 100) * 255)
 
 @dataclass
 class Pattern:
-    items: list[PatternEntry]
+    entries: list[PatternEntry]
     delimit_seconds: float = 0
     repeat_count: int = 1
     after: PatternState = PatternState.TURN_OFF
